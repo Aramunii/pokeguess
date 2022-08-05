@@ -1,34 +1,6 @@
 $(function () {
 
-    var lyrics;
-    var line;
-    var song;
-    var songsname = [];
-    var artists = [];
-    var tries = 1;
-    var tries_guess = [];
-    var all_artists = [];
-    var all_songs_mid = [];
-
-    var selectedMusics = [];
-    var selectedMidi = [];
-    var selectedArtist = [];
-    var gameMusics = [];
-    var difficult = 0;
-    var song_count = 0;
-    var correct_count = 0;
-    var selectedArtistName = '';
-    var totalTimePlayed = 0;
-
-    var SelectMenu = $('#selectMenu');
-    var GamePlay = $('#gameContent');
-    var GamePlayMidi = $('#gameContentMidi');
-    var Difficult = $('#dificultSelect');
-    var EndGame = $('#endGame');
-    var GameMode = $('#gameMode');
-    var gamemode = '';
-
-
+    var all_pokemons = [];
     async function fetchPokes() {
         await fetch('https://aramunii.github.io/pokeguess/data.json').then(function (response) {
             // The API call was successful!
@@ -41,5 +13,50 @@ $(function () {
     }
 
     fetchPokes();
+
+
+    $('#randomButton').on('click',function(){
+        const random = Math.floor(Math.random() * all_pokemons.length);
+        $('#imageDel').attr('src',all_pokemons[random].images.small).show().hide();
+    
+        convertImageToCanvas(all_pokemons[random].images.small);
+    })
+    
+
+    async function imageUrlToBase64 (url){
+        const response = await fetch(url);
+        const blob = await response.blob();
+        return new Promise((onSuccess, onError) => {
+          try {
+            const reader = new FileReader() ;
+            reader.onload = function(){ onSuccess(this.result) } ;
+            reader.readAsDataURL(blob) ;
+          } catch(e) {
+            onError(e);
+          }
+        });
+      };
+
+   async function convertImageToCanvas(url) {
+        $('#teste').remove();
+        var canvas = document.createElement("canvas");
+        canvas.setAttribute('id', 'teste');
+        var image = new Image();
+        const base64 = await imageUrlToBase64(url);
+        console.log(base64);
+        image.src = url
+        canvas.width = image.width;
+        canvas.height = image.height;
+
+        image.onload = function() {
+            canvas.getContext("2d").drawImage(image, 0, 0);
+            console.log('aa');
+            $('#image').append(canvas);
+        };
+
+        $('#imageDel').hide();
+        return canvas;
+    }
+
 
 })
