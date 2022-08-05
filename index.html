@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Song Guess</title>
+    <title>PokeTcg Guess</title>
     <script src="./sweet.js"></script>
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +23,9 @@
 
     <!-- <script src="https://www.mididb.com/js/functions.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.0/jplayer/jquery.jplayer.min.js" integrity="sha512-3LiC+u50IDBLoYYHqC/xHkffIzYT7vCSP+rH+sZhp5NfDSjHchp0uCu6Q2k4jrizRovc13O8rpujnfSz8XhilQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.0/jplayer/jquery.jplayer.min.js"
+        integrity="sha512-3LiC+u50IDBLoYYHqC/xHkffIzYT7vCSP+rH+sZhp5NfDSjHchp0uCu6Q2k4jrizRovc13O8rpujnfSz8XhilQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <link rel="stylesheet" href="http://happyworm.com/jPlayerLab/circleplayer/v13/circle.skin/circle.player.css"> -->
     <script type="text/javascript" src="./jplayer/jquery.transform.js"></script>
     <script type="text/javascript" src="./jplayer/jquery.grab.js"></script>
@@ -61,63 +63,6 @@
         <!-- Outer Row -->
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
-                <div id="gameContent" style="display:none ;">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">Adivinhe a música pela letra</h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="p-4">
-                                        <h3 class="mb-10 font-weight-bold text-primary text-center">Linhas: <span
-                                                id="lines_tries">1</span></h6>
-
-                                            <div class=""></div>
-                                            <div id="lyrics" class="bg-gray-300"
-                                                style="padding: 19px;overflow: scroll;max-width: 50p;max-height: 230px;">
-                                            </div>
-                                            <div class="form-group" style="margin-top: 20px;">
-                                                <input class="form-control form-control-user" value="" list="guessList"
-                                                    id="guess" type="text" name="guess" placeholder="Digite uma música"
-                                                    autocomplete="on">
-                                                <datalist id="guessList"></datalist>
-
-                                            </div>
-                                            <button id="guessButton"
-                                                class="btn btn-primary btn-user btn-block">Adivinhar</button>
-                                            <button id="revealButton"
-                                                class="btn btn-gradient-warning text-white bg-gradient-warning btn-user btn-block">Revelar</button>
-
-
-                                            <!-- <div style="margin-top: 20px;">
-                                            <button id="newLine">Nova Linha</button>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">Tentativas</h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="p-3">
-                                        <div id="tries" class="bg-gray-300"
-                                            style="padding: 19px;overflow: scroll;max-width: 50p;max-height: 200px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="selectMenu" style="display: block;">
                     <div class="card o-hidden border-0 shadow-lg my-5">
                         <div class="card-header py-3">
@@ -146,176 +91,6 @@
                                         </div>
                                         <button id="randomButton"
                                             class="btn btn-gradient-warning text-white bg-gradient-warning btn-user btn-block">Aleátorio</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="dificultSelect" style="display: none;">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">Deseja adivinhar quantas músicas?
-                            </h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="p-4">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group" style="margin-top: 20px;">
-                                                    <button
-                                                        class="btn btn-primary btn-user btn-block start-game">3</button>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group" style="margin-top: 20px;">
-                                                    <button id="5_musics"
-                                                        class="btn btn-primary btn-user btn-block start-game">5</button>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group" style="margin-top: 20px;">
-                                                    <button id="10_musics"
-                                                        class="btn btn-primary btn-user btn-block start-game">10</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="gameMode" style="display: none;">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">Selecione o Modo de Jogo
-                            </h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="p-4">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group" style="margin-top: 20px;">
-                                                    <button id='startLetter'
-                                                        class="btn btn-primary btn-user btn-block ">Adivinhe pela Letra</button>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group" style="margin-top: 20px;">
-                                                    <button id='startMidi'
-                                                        class="btn btn-primary btn-user btn-block">Adivinhe pelo Som</button>
-                                                </div>
-                                            </div>                                    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div id="gameContentMidi" style="display: none;">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">Descubra a música pelo toque.
-                            </h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="p-4">
-                                        <h3 class="text-default text-center timeMidi">0</h1>
-                                        <div id="midi" class="bg-gray-300"
-                                            style="padding: 19px;overflow: scroll;max-width: 50p;max-height: 230px;">
-                                            <div id="playerteste">
-                                                <div id="jquery_jplayer_2" class="cp-jplayer" style="width: 0px; height: 0px;"><img id="jp_poster_1" style="width: 0px; height: 0px; display: none;"><audio id="jp_audio_1" preload="metadata" src="http://www.jplayer.org/audio/m4a/Miaow-04-Lismore.m4a"></audio></div>
-                                                <div class="center song-control">
-                                                    <div id="cp_container_2" class="">
-                                                        <ul class="cp-controls" type="none">
-                                                            <li><a href="#" class="cp-play btn btn-primary btn-user btn-block" tabindex="1" style="display: block;">play</a></li>
-                                                            <li><a href="#" class="cp-pause btn btn-primary btn-user btn-block" tabindex="1" style="display: block;">pause</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" style="margin-top: 20px;">
-                                            <input class="form-control form-control-user" value="" list="guessListMidi"
-                                                id="guessMidi" type="text" name="guessMidi"
-                                                placeholder="Digite uma música" autocomplete="on">
-                                            <datalist id="guessListMidi"></datalist>
-                                        </div>
-                                        <button id="guessButtonMidi"
-                                            class="btn btn-primary btn-user btn-block">Adivinhar</button>
-                                        <button id="revealButtonMidi"
-                                            class="btn btn-gradient-warning text-white bg-gradient-warning btn-user btn-block">Revelar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">Tentativas</h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="p-3">
-                                        <div id="triesMidi" class="bg-gray-300"
-                                            style="padding: 19px;overflow: scroll;max-width: 50p;max-height: 200px;">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="endGame" style="display: none;">
-                    <div class="card o-hidden border-0 shadow-lg my-5">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary text-center">Obrigado por jogar!
-                            </h6>
-                        </div>
-                        <div class="card-body p-0">
-                            <!-- Nested Row within Card Body -->
-                            <div class="row text-default">
-                                <div class="col-lg-12">
-                                    <div class="p-4">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h1 id="artist_title" class="text-center">Supercombo</h1>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <ul id="answers" type="none" class="text-center">
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <h4 class="text-center">Pontuação: <span
-                                                        id="count_play"><b>2/3</b></span></h4>
-                                            </div>
-                                        </div>
-                                        <div class="form-group" style="margin-top: 20px;">
-                                            <button id="10_musics" class="btn btn-primary btn-user btn-block share">Novo
-                                                jogo</button>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
