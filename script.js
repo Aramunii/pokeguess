@@ -30,11 +30,12 @@ $(function () {
 
 
     async function fetchPokes() {
-        await fetch('https://aramunii.github.io/song-guess/data.json').then(function (response) {
+        await fetch('https://aramunii.github.io/pokeguess/data.json').then(function (response) {
             // The API call was successful!
             return response.text();
         }).then(async function (html) {
-            all_artists = JSON.parse(html);
+            all_pokemons = JSON.parse(html);
+            all_pokemons2 = JSON.parse(html);
         });
 
     }

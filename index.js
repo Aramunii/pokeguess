@@ -40,26 +40,21 @@ async function main() {
     //     "/browse/a.html",
     // ];
 
-    var mids = [];
+    var all_pokemons = [];
     const forLoop = async _ => {
         console.log('Start')
 
-        for (i = 1; i <= 883; i++) {
-            var response = await axios.get(`https://www.mididb.com/search.asp?currentPage=${i}&q=e&filter=midi&sort=`);
-            const $ = cheerio.load(response.data);
-
-            const songsArray = $('.list').find('li').toArray();
-            selectedMidi = songsArray.map(song => {
-                var title = $(song).find('.song-title').find('span').text();
-                var artist = $(song).find('.artist-name').find('a').text();
-                var link = $(song).find('.song-control').find('.audio').data('audio-url');
-                mids.push({ title: title, artist: artist, link: link });
-                return { title: title, artist: artist, link: link }
-            })
+        for (i = 1; i <= 61; i++) {
+            var response = await axios.get(`https://api.pokemontcg.io/v2/cards?page=${i}&pageSize=250`);
+            console.log()
+            response.data.data.forEach(element => {
+                all_pokemons.push(element);
+            });
             console.log(i);
+
         }
 
-        fs.writeFileSync('./dataSong.json', JSON.stringify(mids));
+        fs.writeFileSync('./data.json', JSON.stringify(all_pokemons));
 
         console.log('End')
     }
