@@ -225,7 +225,7 @@ $(function () {
                     }
                 });
             } else {
-                TRIES_LIST.append(`<span>${input}</span>`)
+                TRIES_LIST.append(`<p>${input}</p>`)
                 running = true;
                 startGame();
             }
