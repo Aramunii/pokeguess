@@ -69,33 +69,38 @@ $(function () {
     };
 
     async function convertImageToCanvas(url) {
-        $('#teste').remove();
-        canvas = document.createElement("canvas");
-        canvas.setAttribute('id', 'teste');
-        var image = new Image();
-        const base64 = await imageUrlToBase64(url);
-        image.src = url
-        canvas.width = image.width;
-        canvas.height = image.height;
-        actualScale = startScale;
-        image.onload = function () {
-            canvas.getContext("2d").drawImage(image, 0, 0);
-            $('#image').append(canvas);
-            var context = canvas.getContext("2d");
-            dataarr = []
-            if (canvas.width == 0) {
-                randomPoke()
-            } else {
-                LOADING.hide();
-                START_BUTTON.show(300);
-                for (i = 0; i < 100; i++) {
-                    dataarr[i] = context.getImageData(0, 0, canvas.width, canvas.height)
+        try {
+            $('#teste').remove();
+            canvas = document.createElement("canvas");
+            canvas.setAttribute('id', 'teste');
+            var image = new Image();
+            const base64 = await imageUrlToBase64(url);
+            image.src = url
+            canvas.width = image.width;
+            canvas.height = image.height;
+            actualScale = startScale;
+            image.onload = function () {
+                canvas.getContext("2d").drawImage(image, 0, 0);
+                $('#image').append(canvas);
+                var context = canvas.getContext("2d");
+                dataarr = []
+                if (canvas.width == 0) {
+                    randomPoke()
+                } else {
+                    LOADING.hide();
+                    START_BUTTON.show(300);
+                    for (i = 0; i < 100; i++) {
+                        dataarr[i] = context.getImageData(0, 0, canvas.width, canvas.height)
+                    }
+                    var data = context.getImageData(0, 0, canvas.width, canvas.height);
+                    JSManipulate.diffusion.filter(data, { scale: startScale });
+                    context.putImageData(data, 0, 0);
                 }
-                var data = context.getImageData(0, 0, canvas.width, canvas.height);
-                JSManipulate.diffusion.filter(data, { scale: startScale });
-                context.putImageData(data, 0, 0);
-            }
-        };
+            };
+        } catch (error) {
+            alert(error);
+        }
+
 
         image.crossOrigin = "anonymous";
         $('#imageDel').hide();
