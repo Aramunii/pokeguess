@@ -26,6 +26,7 @@ $(function () {
     TRIES_LIST = $('#tries');
     RESULT = $('#result');
     SHARE_BUTTON = $('#shareButton');
+    PAY_BUTTON = $('#payDev');
 
     async function fetchPokes() {
         await fetch('https://aramunii.github.io/pokeguess/data.json').then(function (response) {
@@ -123,6 +124,8 @@ $(function () {
         TIME_SPAN.hide();
         RESULT.hide()
         TRIES_LIST.empty();
+        SHARE_BUTTON.hide();
+        PAY_BUTTON.hide();
     }
 
     function showGuessContent() {
@@ -226,6 +229,8 @@ $(function () {
                         RESULT.show(200);
                         RESULT.text(`✅ Você Acertou!`)
                         SHARE_BUTTON.show(200);
+                        PAY_BUTTON.show(200);
+
                     }
                 });
             } else {
