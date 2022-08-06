@@ -54,27 +54,12 @@ $(function () {
     })
 
 
-    async function imageUrlToBase64(url) {
-        const response = await fetch(url);
-        const blob = await response.blob();
-        return new Promise((onSuccess, onError) => {
-            try {
-                const reader = new FileReader();
-                reader.onload = function () { onSuccess(this.result) };
-                reader.readAsDataURL(blob);
-            } catch (e) {
-                onError(e);
-            }
-        });
-    };
-
     async function convertImageToCanvas(url) {
         try {
             $('#teste').remove();
             canvas = document.createElement("canvas");
             canvas.setAttribute('id', 'teste');
             var image = new Image();
-            const base64 = await imageUrlToBase64(url);
             image.src = url
             canvas.width = image.width;
             canvas.height = image.height;
