@@ -276,8 +276,15 @@ $(function () {
     SHARE_BUTTON.on('click', function () {
         var timed = currentTime;
         var pokemon = selectedPokemon.name;
-        var string = `Eu acertei a carta *${pokemon}* em ${timed.toFixed(2)} segundos \n https://aramunii.github.io/pokeguess/ `
+        var string = `Eu acertei a carta *${pokemon}* \n\n Em ${timed.toFixed(2)} segundos \n\n https://aramunii.github.io/pokeguess/ `
         copyStringToClipboard(string);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Copiado!',
+            showConfirmButton: false,
+            timer: 300
+          })
     })
 
 
