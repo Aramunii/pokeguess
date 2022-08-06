@@ -13,6 +13,7 @@ $(function () {
 
     LOADING = $('#loading');
     START_BUTTON = $('#startButton');
+    CONTINUE_BUTTON = $("#continueButton");
     GUESS_BUTTON = $("#guessButton");
     REVEAL_BUTTON = $("#revealButton");
     GUESS_CONTENT = $('.guess-content');
@@ -153,6 +154,17 @@ $(function () {
         RESULT.hide()
     });
 
+    CONTINUE_BUTTON.on('click', function () {
+        $(this).hide();
+        showButtons();
+        running = true;
+        startGame();
+        TIME_CONTENT.show();
+        TIME_SPAN.show();
+        TRIES_CONTENT.show();
+        RESULT.hide()
+    })
+
     // async function startCronometer() {
     //     while (running) {
 
@@ -230,13 +242,22 @@ $(function () {
                         RESULT.text(`✅ Você Acertou!`)
                         SHARE_BUTTON.show(200);
                         PAY_BUTTON.show(200);
-
                     }
                 });
             } else {
-                TRIES_LIST.append(`<p>${input}</p>`)
-                running = true;
-                startGame();
+                Swal.fire({
+                    title: `Você errou!`,
+                    text: 'Continue tentando',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        TRIES_LIST.append(`<p>${input}</p>`)
+                        running = true;
+                        CONTINUE_BUTTON.show(200);
+                        $('.guess-content').hide();
+                    }
+                });
             }
             INPUT_GUESS.val('');
             console.log(input, selectedPokemon.name);
@@ -289,7 +310,7 @@ $(function () {
             title: 'Copiado!',
             showConfirmButton: false,
             timer: 300
-          })
+        })
     })
 
 
