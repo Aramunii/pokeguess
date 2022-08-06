@@ -83,7 +83,7 @@ $(function () {
             canvas.width = image.width;
             canvas.height = image.height;
             actualScale = startScale;
-            alert('aqui');
+            alert(base64);
             image.onload = function () {
                 try {
                     canvas.getContext("2d").drawImage(image, 0, 0);
