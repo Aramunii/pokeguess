@@ -80,11 +80,12 @@ $(function () {
                 alert(error);
             }
             image.src = url
-            canvas.width = image.width;
-            canvas.height = image.height;
-            alert(image.width);
+            
             actualScale = startScale;
             image.onload = function () {
+                canvas.width = image.width;
+                canvas.height = image.height;
+                alert(image.width);
                 try {
                     canvas.getContext("2d").drawImage(image, 0, 0);
                     $('#image').append(canvas);
