@@ -17,6 +17,7 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <script src="./jsmanipulate.js"></script>
+    
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -26,6 +27,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
         integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+        <script src="./html2canvas.js"></script>
 
     <script src="./script.js"></script>
     <!-- Custom styles for this template-->
@@ -54,8 +56,6 @@
             border-left-color: red;
             border-right-color: red;
         }
-
-
     </style>
 
 </head>
@@ -92,7 +92,9 @@
                                             <div class="col-md-12 center">
                                                 <h5><span id="timeUpdate"></span></h5>
                                             </div>
-                                            <div class="col-md-12 text-center"><h3 id="result"></h3></div>
+                                            <div class="col-md-12 text-center">
+                                                <h3 id="result"></h3>
+                                            </div>
                                         </div>
                                         <div class="guess-content" style="display: none;">
                                             <div class="row">
@@ -116,7 +118,7 @@
                                                         sei</button>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-12">
                                                 <div class="form-group" style="margin-top: 20px;">
                                                     <button id="revealButton"
                                                         class="btn bg-gradient-info text-white btn-user btn-block">Revelar</button>
@@ -127,6 +129,8 @@
                                             class="btn btn-gradient-warning text-white bg-gradient-warning btn-user btn-block">Iniciar</button>
                                         <button id="guessButton" style="display: none;"
                                             class="btn btn-gradient-warning text-white bg-gradient-warning btn-user btn-block">Responder</button>
+                                        <button id="shareButton" style="display: none;"
+                                            class="btn btn-gradient-success text-white bg-gradient-success btn-user btn-block">Compartilhar Resultado</button>
                                     </div>
                                 </div>
                             </div>

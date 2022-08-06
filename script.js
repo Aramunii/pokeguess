@@ -25,6 +25,7 @@ $(function () {
     TRIES_CONTENT = $('.tries');
     TRIES_LIST = $('#tries');
     RESULT = $('#result');
+    SHARE_BUTTON = $('#shareButton');
 
     async function fetchPokes() {
         await fetch('https://aramunii.github.io/pokeguess/data.json').then(function (response) {
@@ -121,6 +122,7 @@ $(function () {
         TRIES_CONTENT.hide();
         TIME_SPAN.hide();
         RESULT.hide()
+        TRIES_LIST.empty();
     }
 
     function showGuessContent() {
@@ -169,6 +171,7 @@ $(function () {
             running = false;
             GUESS_CONTENT.hide(300);
             TRIES_CONTENT.hide(300);
+            GUESS_BUTTON.hide(300);
             RESULT.show(200).text(`❌ Você não adivinhou a tempo!`)
         }
     }
@@ -222,6 +225,7 @@ $(function () {
                         TRIES_CONTENT.hide(300);
                         RESULT.show(200);
                         RESULT.text(`✅ Você Acertou!`)
+                        SHARE_BUTTON.show(200);
                     }
                 });
             } else {
@@ -268,4 +272,29 @@ $(function () {
             })
         }
     });
+
+    SHARE_BUTTON.on('click', function () {
+        var timed = currentTime;
+        var pokemon = selectedPokemon.name;
+        var string = `Eu acertei a carta *${pokemon}* em ${timed.toFixed(2)} segundos \n https://aramunii.github.io/pokeguess/ `
+        copyStringToClipboard(string);
+    })
+
+
+    function copyStringToClipboard(str) {
+        // Create new element
+        var el = document.createElement('textarea');
+        // Set value (string to be copied)
+        el.value = str;
+        // Set non-editable to avoid focus and move outside of view
+        el.setAttribute('readonly', '');
+        el.style = { position: 'absolute', left: '-9999px' };
+        document.body.appendChild(el);
+        // Select text inside element
+        el.select();
+        // Copy text to clipboard
+        document.execCommand('copy');
+        // Remove temporary element
+        document.body.removeChild(el);
+    }
 })
