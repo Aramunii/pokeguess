@@ -45,7 +45,7 @@ $(function () {
 
         const random = Math.floor(Math.random() * all_pokemons.length);
         selectedPokemon = all_pokemons[random];
-        $('#imageDel').attr('src', all_pokemons[random].images.small).show().hide();
+        $('#imageDel').attr('src', all_pokemons[random].images.small).show();
         convertImageToCanvas(all_pokemons[random].images.small);
     }
 
