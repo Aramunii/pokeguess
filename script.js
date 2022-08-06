@@ -76,6 +76,7 @@ $(function () {
             var image = new Image();
             try {
             const base64 = await imageUrlToBase64(url);
+            alert(base64);
             } catch (error) {
                 alert(error);
             }
@@ -83,7 +84,6 @@ $(function () {
             canvas.width = image.width;
             canvas.height = image.height;
             actualScale = startScale;
-            alert(base64);
             image.onload = function () {
                 try {
                     canvas.getContext("2d").drawImage(image, 0, 0);
