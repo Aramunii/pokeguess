@@ -82,6 +82,7 @@ $(function () {
             image.src = url
             canvas.width = image.width;
             canvas.height = image.height;
+            alert(image.width);
             actualScale = startScale;
             image.onload = function () {
                 try {
@@ -90,7 +91,6 @@ $(function () {
                     var context = canvas.getContext("2d");
                     dataarr = []
                     if (canvas.width == 0) {
-                        alert("aaaaaa");
                         randomPoke()
                     } else {
                         LOADING.hide();
