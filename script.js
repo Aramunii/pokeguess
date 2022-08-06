@@ -63,7 +63,6 @@ $(function () {
                 reader.onload = function () { onSuccess(this.result) };
                 reader.readAsDataURL(blob);
             } catch (e) {
-                alert(e);
             }
         });
     };
@@ -77,15 +76,13 @@ $(function () {
             try {
                 var base64 = await imageUrlToBase64(url);
             } catch (error) {
-                alert(error);
             }
             image.src = url
-            
+
             actualScale = startScale;
             image.onload = function () {
                 canvas.width = image.width;
                 canvas.height = image.height;
-                alert(image.width);
                 try {
                     canvas.getContext("2d").drawImage(image, 0, 0);
                     $('#image').append(canvas);
@@ -104,17 +101,13 @@ $(function () {
                             JSManipulate.diffusion.filter(data, { scale: startScale });
                             context.putImageData(data, 0, 0);
                         } catch (error) {
-                            alert(error);
                         }
-
                     }
                 } catch (error) {
-                    alert(error);
                 }
 
             };
         } catch (error) {
-            alert(error);
         }
 
 
