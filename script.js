@@ -85,6 +85,7 @@ $(function () {
             actualScale = startScale;
             image.onload = function () {
                 try {
+                    console.log('AAAAAAAAAAA CARREGOU');
                     canvas.getContext("2d").drawImage(image, 0, 0);
                     $('#image').append(canvas);
                     var context = canvas.getContext("2d");
